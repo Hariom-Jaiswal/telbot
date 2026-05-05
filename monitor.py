@@ -28,6 +28,7 @@ def get_latest_date():
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
     # comment this while testing if you want to see browser
     # options.add_argument("--headless")
 
@@ -46,7 +47,7 @@ def get_latest_date():
         clicked = False
         for tab in tabs:
             if tab.is_displayed():
-                tab.click()
+                driver.execute_script("arguments[0].click();", tab)
                 clicked = True
                 break
 
@@ -83,7 +84,7 @@ def get_latest_date():
         elements = driver.find_elements(By.XPATH, "//*[contains(text(),'Orders/Judgments')]")
         for el in elements:
             if el.is_displayed():
-                el.click()
+                driver.execute_script("arguments[0].click();", el)
                 break
 
         time.sleep(3)
